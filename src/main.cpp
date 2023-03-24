@@ -1,12 +1,12 @@
 #include <Arduino.h>
 
-#define NUM_SPEAKERS 8
+#define NUM_SPEAKERS 5
 
 uint32_t musicTable[][3] = {};
-int musicLen = 0;
+int musicLen = 1600;
 
 int ticksPerBeat = 480;
-int usPerBeat = 500000;
+uint32_t usPerBeat = 500000;
 uint32_t usPerTick = usPerBeat / ticksPerBeat;
 
 void setup() {
@@ -38,7 +38,7 @@ void loop() {
         uint32_t newFreq = musicTable[i][1];
         uint32_t channel = musicTable[i][0];
 
-        if (channel == 9) {
+        if (channel == NUM_SPEAKERS + 1) {
             usPerBeat = newFreq;
             usPerTick = usPerBeat / ticksPerBeat;
         } else {
